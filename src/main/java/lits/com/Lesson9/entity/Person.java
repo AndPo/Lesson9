@@ -7,12 +7,11 @@ import javax.persistence.*;
 public class Person {
 
     @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Id;
+    private Integer Id;
 
-    @Column
     private String name;
-    @Column
-    private int age;
+    private Integer age;
+    private Boolean dead;
 
     public int getId() {
         return Id;
@@ -36,5 +35,13 @@ public class Person {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Boolean getDead() {
+        return dead;
+    }
+
+    public void setDead(Boolean dead) {
+        this.dead = dead;
     }
 }

@@ -4,10 +4,11 @@ import lits.com.Lesson9.entity.Person;
 import lits.com.Lesson9.repository.PersonRepository;
 import lits.com.Lesson9.service.PersonService;
 import lits.com.Lesson9.service.mapper.PersonMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +16,8 @@ import java.util.List;
 @Qualifier(value = "alive")
 public class AlivePersonService implements PersonService {
 
+    @Autowired
+    private ModelMapper modelMapper;
 
     @Autowired
     private PersonRepository personRepository;
@@ -32,7 +35,7 @@ public class AlivePersonService implements PersonService {
         List<Person> list = personRepository.findAll();
         List<PersonDto> resultList = new ArrayList<>();
         for (Person person :list) {
-            resultList.add(personMapper.toDto(person));
+            resultList.add(modelMapper.map(person, PersonDto.class));
         }
         return  resultList;
     }

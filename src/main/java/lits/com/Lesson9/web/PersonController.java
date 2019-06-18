@@ -1,8 +1,9 @@
 package lits.com.Lesson9.web;
-
+import lits.com.Lesson9.config.ApplicationConfig;
 import lits.com.Lesson9.dtos.PersonDto;
 import lits.com.Lesson9.entity.Person;
 import lits.com.Lesson9.service.PersonService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +15,13 @@ public class PersonController {
     @Qualifier(value = "alive")
     private PersonService personService;
 
-    /*@Autowired
+    @Autowired
     @Qualifier(value = "dead")
-    private PersonService deadPersonService;*/
+    private PersonService deadPersonService;
 
     @GetMapping()
     public String getPersonById(){
-        return "Hello world";
+        return "Hello world__ZZZ";
     }
 
     @PostMapping
@@ -39,4 +40,6 @@ public class PersonController {
     public Person savePerson(@RequestBody Person person){
         return personService.save(person);
     }*/
+
+
 }

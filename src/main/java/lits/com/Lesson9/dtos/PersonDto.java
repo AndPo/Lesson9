@@ -4,11 +4,11 @@ import lits.com.Lesson9.entity.Person;
 
 import javax.persistence.*;
 
-@Entity
-@Table
+
 public class PersonDto extends Person {
 
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Id;
 
     @Column
