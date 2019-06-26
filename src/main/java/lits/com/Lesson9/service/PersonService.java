@@ -1,12 +1,16 @@
 package lits.com.Lesson9.service;
-import lits.com.Lesson9.dtos.PersonDto;
-import lits.com.Lesson9.entity.Person;
+import lits.com.Lesson9.dto.PersonDto;
+
 import java.util.List;
 
 public interface PersonService {
 
-    PersonDto getById(Integer id);
+    PersonDto getById(long id);
     List<PersonDto>getAllPersons();
     PersonDto save(PersonDto personDto);
+
+    PersonDto update(PersonDto personDto);
+
+    List<PersonDto> getAllPersonsByName(String name);
 
 }

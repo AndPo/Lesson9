@@ -1,7 +1,7 @@
 package lits.com.Lesson9.service.mapper;
 
-import lits.com.Lesson9.dtos.PersonDto;
-import lits.com.Lesson9.entity.Person;
+import lits.com.Lesson9.dto.PersonDto;
+import lits.com.Lesson9.model.Person;
 import org.springframework.stereotype.Component;
 
 @Component

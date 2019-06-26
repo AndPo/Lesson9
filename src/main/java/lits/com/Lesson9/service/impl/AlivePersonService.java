@@ -1,13 +1,12 @@
 package lits.com.Lesson9.service.impl;
-import lits.com.Lesson9.dtos.PersonDto;
-import lits.com.Lesson9.entity.Person;
+import lits.com.Lesson9.dto.PersonDto;
+import lits.com.Lesson9.model.Person;
 import lits.com.Lesson9.repository.PersonRepository;
 import lits.com.Lesson9.service.PersonService;
 import lits.com.Lesson9.service.mapper.PersonMapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,4 +45,23 @@ public class AlivePersonService implements PersonService {
         Person entity = personMapper.toEntity(personDto);
         return personMapper.toDto(personRepository.save(entity));
     }
+
+    @Override
+    public PersonDto update(PersonDto personDto) {
+        return null;
+    }
+
+    @Override
+    public List<PersonDto> getAllPersonsByName(String name) {
+        return null;
+    }
+
+    @Override
+    public List<PersonDto> getAllPersonsByCity(Integer cityId) {
+        return null;
+    }
+
+    Person person = Person.builder().build();
+
+
 }

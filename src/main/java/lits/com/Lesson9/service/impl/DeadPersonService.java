@@ -1,6 +1,6 @@
 package lits.com.Lesson9.service.impl;
-import lits.com.Lesson9.dtos.PersonDto;
-import lits.com.Lesson9.entity.Person;
+import lits.com.Lesson9.dto.PersonDto;
+import lits.com.Lesson9.model.Person;
 import lits.com.Lesson9.repository.PersonRepository;
 import lits.com.Lesson9.service.PersonService;
 import lits.com.Lesson9.service.mapper.PersonMapper;
@@ -25,7 +25,7 @@ public class DeadPersonService implements PersonService {
     private PersonMapper personMapper;
 
     @Override
-    public PersonDto getById(Integer id) {
+    public PersonDto getById(long id) {
         return personMapper.toDto(personRepository.findOne(id));
     }
 
@@ -44,4 +44,16 @@ public class DeadPersonService implements PersonService {
         Person entity = personMapper.toEntity(personDto);
         return personMapper.toDto(personRepository.save(entity));
     }
+
+    @Override
+    public PersonDto update(PersonDto personDto) {
+        return null;
+    }
+
+    @Override
+    public List<PersonDto> getAllPersonsByName(String name) {
+        return null;
+    }
+
+
 }

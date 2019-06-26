@@ -1,9 +1,7 @@
 package lits.com.Lesson9.web;
-import lits.com.Lesson9.config.ApplicationConfig;
-import lits.com.Lesson9.dtos.PersonDto;
-import lits.com.Lesson9.entity.Person;
+import lits.com.Lesson9.dto.PersonDto;
+import lits.com.Lesson9.model.Person;
 import lits.com.Lesson9.service.PersonService;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
