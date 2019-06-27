@@ -1,5 +1,6 @@
 package lits.com.Lesson9.security;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,6 +13,8 @@ public class JwtUser extends User implements UserDetails {
 
     private final Long id;
     private final Collection<? extends GrantedAuthority> authorities;
+
+    //public JwtUser(){}
 
     public JwtUser(Long id, Collection<? extends GrantedAuthority> authorities) {
         super(String.valueOf(id), "", authorities);
@@ -29,24 +32,6 @@ public class JwtUser extends User implements UserDetails {
         super(username, password, authorities);
         this.id = id;
         this.authorities = authorities;
-    }
-
-
-    @JsonIgnore
-    public Long getId() {
-        return id;
-    }
-
-
-    @JsonIgnore
-    @Override
-    public String getPassword() {
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return null;
     }
 
     @JsonIgnore

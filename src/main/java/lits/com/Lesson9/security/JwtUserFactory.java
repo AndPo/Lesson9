@@ -10,7 +10,7 @@ public class JwtUserFactory {
     private JwtUserFactory() {
     }
 
-    public static JwtUser create(Long accountId, String roles) {
+    public static JwtUser create(Long accountId, List<GrantedAuthority> roles) {
         return new JwtUser(
                 accountId,
                 roles

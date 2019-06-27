@@ -25,7 +25,7 @@ public class DeadPersonService implements PersonService {
     private PersonMapper personMapper;
 
     @Override
-    public PersonDto getById(long id) {
+    public PersonDto getById(Long id) {
         return personMapper.toDto(personRepository.findOne(id));
     }
 
@@ -52,6 +52,11 @@ public class DeadPersonService implements PersonService {
 
     @Override
     public List<PersonDto> getAllPersonsByName(String name) {
+        return null;
+    }
+
+    @Override
+    public List<PersonDto> findByNameAndAge(String name, Integer age) {
         return null;
     }
 

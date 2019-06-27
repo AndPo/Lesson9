@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Qualifier(value = "alive")
@@ -25,8 +27,10 @@ public class AlivePersonService implements PersonService {
     private PersonMapper personMapper;
 
     @Override
-    public PersonDto getById(Integer id) {
-        return personMapper.toDto(personRepository.findOne(id));
+    public PersonDto getById(Long id) {
+         return Optional.ofNullable(personRepository.findOne(id))
+                .map(e -> modelMapper.map(e, PersonDto.class))
+                .orElse(new PersonDto());
     }
 
     @Override
@@ -47,19 +51,31 @@ public class AlivePersonService implements PersonService {
     }
 
     @Override
+    public List<PersonDto> findByNameAndAge(String name, Integer age) {
+        return personRepository.findByNameAndAge(name, age).stream()
+                .filter(e -> !e.getDead())
+                .map(e -> modelMapper.map(e, PersonDto.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public PersonDto update(PersonDto personDto) {
-        return null;
+        return Optional.ofNullable(personDto)
+                .map(e -> modelMapper.map(e, Person.class))
+                .map(e -> personRepository.save(e))
+                .map(e -> modelMapper.map(e, PersonDto.class))
+                .orElse(new PersonDto());
     }
 
     @Override
     public List<PersonDto> getAllPersonsByName(String name) {
-        return null;
+        return personRepository.findAllByNameContains(name).stream()
+                .filter(e -> !e.getDead())
+                .map(e -> modelMapper.map(e, PersonDto.class))
+                .collect(Collectors.toList());
     }
 
-    @Override
-    public List<PersonDto> getAllPersonsByCity(Integer cityId) {
-        return null;
-    }
+
 
     Person person = Person.builder().build();
 
