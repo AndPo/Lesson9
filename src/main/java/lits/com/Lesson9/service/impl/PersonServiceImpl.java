@@ -7,7 +7,6 @@ import lits.com.Lesson9.service.PersonService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 @Service(value = "personService")
 public class PersonServiceImpl implements PersonService {
 
-    //TODO ask teachers about using Optional and NotNullable in streams
+
 
     @Autowired
     private PersonRepository personRepository;
