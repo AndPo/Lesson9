@@ -41,10 +41,10 @@ public class PersonServiceTest {
     @Test
     public void shouldGetPerson(){
         Person person = new Person();
-        when(personRepository.findOne(1)).thenReturn(person);
+        when(personRepository.findOne(1L)).thenReturn(person);
 
-        personService.getById(1);
-        verify(personRepository,times(1)).findOne(1);
+        personService.getById(1L);
+        verify(personRepository,times(1)).findOne(1L);
     }
 
 

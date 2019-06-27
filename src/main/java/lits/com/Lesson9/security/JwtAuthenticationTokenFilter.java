@@ -1,6 +1,7 @@
 package lits.com.Lesson9.security;
 import lits.com.Lesson9.service.TokenService;
 import lits.com.Lesson9.service.UserService;
+import lits.com.Lesson9.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,32 +27,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private TokenService tokenService;
 
     @Autowired
-    private UserService userService = new UserService() {
-        @Override
-        public int hashCode() {
-            return super.hashCode();
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            return super.equals(obj);
-        }
-
-        @Override
-        protected Object clone() throws CloneNotSupportedException {
-            return super.clone();
-        }
-
-        @Override
-        public String toString() {
-            return super.toString();
-        }
-
-        @Override
-        protected void finalize() throws Throwable {
-            super.finalize();
-        }
-    };
+    private UserServiceImpl userService;
 
 
     @Override
@@ -65,7 +41,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         logger.info("checking authentication for user " + accountId);
 
         if (accountId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            JwtUser jwtUser = JwtUserFactory.create(accountId, "ROLE_ADMIN");
+            JwtUser jwtUser = JwtUserFactory.create(accountId, userService.getAuthority(userService.findById(accountId)));
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(jwtUser, null, jwtUser.getAuthorities());
             authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             logger.info("authenticated user " + accountId + ", setting security context");

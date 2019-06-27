@@ -17,9 +17,6 @@ public class PersonController {
     @Autowired
     private Map<String, PersonService> personServicesMap;
 
-    @Autowired
-//    private CityRepository cityRepository;
-
     private PersonService qualifiedPersonService(Boolean isAlive){
         PersonService personService;
         if (isAlive == null){
@@ -30,14 +27,13 @@ public class PersonController {
         return personService;
     }
 
-    //TODO change methods. Methods must be sensitive to isDead field
     @GetMapping(value = "")
     public List<PersonDto> geAllPersons(@RequestParam(value = "isalive", required = false) Boolean isAlive){
         return qualifiedPersonService(isAlive).getAllPersons();
     }
 
     @GetMapping(value = "/{id}")
-    public PersonDto getPersonById(@PathVariable("id")Integer id) {
+    public PersonDto getPersonById(@PathVariable("id")Long id) {
         return qualifiedPersonService(null).getById(id);
     }
 
@@ -61,10 +57,5 @@ public class PersonController {
         return qualifiedPersonService(isAlive).getAllPersonsByName(name);
     }
 
-    @GetMapping(value = "/city/{city_id}")
-    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGE') or hasRole('ROLE_USER')")
-    public List<PersonDto> getAlivePersonsByCity(@PathVariable("city_id") Integer cityId,
-                                                 @RequestParam(value = "isalive", required = false) Boolean isAlive){
-        return qualifiedPersonService(isAlive).getAllPersonsByCity(cityId);
-    }
+
 }

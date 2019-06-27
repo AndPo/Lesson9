@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 public class PersonServiceImpl implements PersonService {
 
 
-
     @Autowired
     private PersonRepository personRepository;
 
@@ -23,7 +22,7 @@ public class PersonServiceImpl implements PersonService {
     private ModelMapper modelMapper;
 
     @Override
-    public PersonDto getById(long id) {
+    public PersonDto getById(Long id) {
         return Optional.ofNullable(personRepository.findOne(id))
                 .map(e -> modelMapper.map(e, PersonDto.class))
                 .orElse(new PersonDto());
@@ -46,8 +45,6 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public PersonDto save(PersonDto personDto) {
-//        City city = person.getCity();
-//        cityRepository.findByName(city.getName()) != null ?  :
         return Optional.ofNullable(personDto)
                 .map(e -> modelMapper.map(e, Person.class))
                 .map(e -> personRepository.save(e))
@@ -58,7 +55,6 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<PersonDto> findByNameAndAge(String name, Integer age) {
         return personRepository.findByNameAndAge(name, age).stream()
-
                 .map(e -> modelMapper.map(e, PersonDto.class))
                 .collect(Collectors.toList());
     }

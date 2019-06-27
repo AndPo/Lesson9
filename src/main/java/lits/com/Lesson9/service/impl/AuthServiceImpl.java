@@ -1,5 +1,6 @@
 package lits.com.Lesson9.service.impl;
 
+import lits.com.Lesson9.model.User;
 import lits.com.Lesson9.repository.UserRepository;
 import lits.com.Lesson9.service.AuthService;
 import lits.com.Lesson9.service.TokenService;
@@ -31,7 +32,7 @@ public class AuthServiceImpl implements AuthService {
                 )
         );
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        UserEntity user = userRepository.findOneByEmail(login);
+        User user = userRepository.findOneByEmail(login);
         return tokenService.createToken(user.getId());
     }
 }
