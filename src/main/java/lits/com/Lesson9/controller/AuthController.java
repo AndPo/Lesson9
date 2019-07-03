@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api")
 public class AuthController {
 
-
     private AuthService authService;
 
     @Autowired

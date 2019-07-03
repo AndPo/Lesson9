@@ -5,6 +5,7 @@ import lits.com.Lesson9.dto.PersonDto;
 import lits.com.Lesson9.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +14,8 @@ import java.util.Map;
 @RestController
 @RequestMapping(value ="/api/persons")
 public class PersonController {
+
+
 
     @Autowired
     private Map<String, PersonService> personServicesMap;
@@ -34,12 +37,13 @@ public class PersonController {
 
     @GetMapping(value = "/{id}")
     public PersonDto getPersonById(@PathVariable("id")Long id) {
-        return qualifiedPersonService(null).getById(id);
+       return qualifiedPersonService(null).getById(id);
+
     }
 
     @PostMapping(value = "")
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGE')")
-    public PersonDto savePerson(@RequestBody PersonDto personDto){
+    public PersonDto savePerson(@Validated  @RequestBody PersonDto personDto){
         return qualifiedPersonService(null).save(personDto);
     }
 

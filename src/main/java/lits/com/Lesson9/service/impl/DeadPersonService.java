@@ -26,7 +26,11 @@ public class DeadPersonService implements PersonService {
 
     @Override
     public PersonDto getById(Long id) {
-        return personMapper.toDto(personRepository.findOne(id));
+        Person one = null; //personRepository.findOne(id);
+        if(one==null){
+            throw new RuntimeException("User not found");
+        }
+        return personMapper.toDto(one);
     }
 
     @Override
